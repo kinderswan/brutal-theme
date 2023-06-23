@@ -1,0 +1,576 @@
+@use 'sass:math' as math;
+
+@use 'sass:color' as col;
+
+@use 'sass:string' as str;
+// @mixin unsafe-doors() {
+//   transition: all 500ms cubic-bezier(0.965, 1.65, 0.035, 0.78); /* custom */
+//   transition-timing-function: cubic-bezier(0.965, 1.65, 0.035, 0.78); /* custom */
+// }
+
+// @keyframes border-invert {
+//   to {
+//     filter: invert(100%);
+//   }
+// }
+
+// // BORDERS MIXINS
+// @mixin brutal-border-old() {
+//   border: math.div($basic-pixel-size, 2) solid #000;
+//   background-color: #fff;
+// }
+
+// @mixin brutal-border-old-bottom() {
+//   border-bottom: math.div($basic-pixel-size, 2) solid #000;
+// }
+
+// @mixin brutal-border-old-hoverable() {
+//   @include brutal-border-old();
+//   &:hover {
+//     animation: border-invert 400ms;
+//     animation-fill-mode: forwards;
+//   }
+// }
+
+// // END BORDERS MIXINS
+
+// .loader > * {
+//   visibility: hidden;
+// }
+
+// .brutal-card {
+//   min-height: max(calc(100vh / 3), 240px);
+//   min-width: 240px;
+//   overflow: hidden;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   @include brutal-border-old();
+
+//   &-content {
+//     height: calc(100% - 65px);
+//     overflow-y: auto;
+//     overflow-x: hidden;
+//     white-space: break-spaces;
+//     word-break: break-all;
+//     padding: $basic-pixel-size * 2;
+//   }
+//   &-container {
+//     display: flex;
+//     gap: $basic-pixel-size * 4;
+//     flex-wrap: wrap;
+//     margin-top: $basic-pixel-size * 4;
+//   }
+//   &-actions {
+//     justify-content: space-between;
+//     border-top: math.div($basic-pixel-size, 2) solid #000;
+//     display: flex;
+//     flex-wrap: wrap;
+//     flex-direction: row;
+//     gap: $basic-pixel-size * 2;
+//     padding: $basic-pixel-size $basic-pixel-size * 2;
+//     ::ng-deep > * {
+//       flex-basis: calc((100% - $basic-pixel-size * 2) / 3);
+//       flex-grow: 4;
+//     }
+//   }
+// }
+
+// .brutal-checkbox {
+//   &:checked {
+//     background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path d="m379.333-216.667-252.999-253 76.332-76.332 176.667 177.666L757-746l76.333 75.333-454 454Z"/></svg>')
+//       50% 50% no-repeat transparent;
+//   }
+//   &:hover {
+//     border-style: dashed;
+//   }
+//   @include brutal-border-old();
+//   display: flex;
+//   width: 32px !important;
+//   height: 32px;
+// }
+
+// .brutal-loader {
+//   width: 100%;
+//   .loader {
+//     width: fit-content;
+//     height: fit-content;
+//     display: inline-block;
+//     background: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000 100%),
+//       linear-gradient(45deg, #000 25%, white 25%, white 75%, #000 75%, #000 100%);
+//     background-size: 32px 32px;
+//     box-sizing: border-box;
+//     animation: raceBoard 0.6s linear infinite;
+//     background-position: 0 0, 16px 16px;
+//   }
+// }
+
+// @keyframes raceBoard {
+//   0% {
+//     background-position: 0 0, 16px 16px;
+//   }
+//   100% {
+//     background-position: 32px 0px, 48px 16px;
+//   }
+// }
+
+// .brutal-select {
+//   min-height: 5 * $basic-pixel-size;
+//   padding: 0px $basic-pixel-size * 2;
+//   justify-content: center;
+//   min-width: fit-content;
+//   @include brutal-border-old();
+//   & {
+//     appearance: none;
+//     background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"/></svg>')
+//       100% 50% no-repeat transparent;
+//   }
+//   option {
+//     all: unset;
+//     display: flex;
+//   }
+// }
+
+// .brutal-sidenav {
+//   height: 100%;
+//   display: block;
+
+//   $basic-pixel-size: 8px;
+
+//   @mixin unsafe-doors() {
+//     transition: all 500ms cubic-bezier(0.965, 1.65, 0.035, 0.78); /* custom */
+//     transition-timing-function: cubic-bezier(0.965, 1.65, 0.035, 0.78); /* custom */
+//   }
+
+//   @keyframes border-invert {
+//     to {
+//       filter: invert(100%);
+//     }
+//   }
+
+//   @mixin brutal-border-old() {
+//     border: math.div($basic-pixel-size, 2) solid #000;
+//     background-color: #fff;
+//   }
+
+//   @mixin brutal-border-old-bottom() {
+//     border-bottom: math.div($basic-pixel-size, 2) solid #000;
+//   }
+
+//   @mixin brutal-border-old-hoverable() {
+//     @include brutal-border-old();
+//     &:hover {
+//       animation: border-invert 400ms;
+//       animation-fill-mode: forwards;
+//     }
+//   }
+
+//   input[brutal-input] {
+//     height: auto;
+//     caret-color: red;
+//     @include brutal-border-old();
+//     &::placeholder {
+//       color: rgba(#000, 0.5);
+//       font-style: italic;
+//     }
+//     &:focus {
+//       border-style: dashed;
+//     }
+//   }
+
+//   [class^='brutal-'] {
+//     display: flex;
+//     width: 100%;
+//     box-sizing: border-box;
+//   }
+
+//   .loader > * {
+//     visibility: hidden;
+//   }
+
+//   .brutal-card {
+//     min-height: max(calc(100vh / 3), 240px);
+//     min-width: 240px;
+//     overflow: hidden;
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     @include brutal-border-old();
+
+//     &-content {
+//       height: calc(100% - 65px);
+//       overflow-y: auto;
+//       overflow-x: hidden;
+//       white-space: break-spaces;
+//       word-break: break-all;
+//       padding: $basic-pixel-size * 2;
+//     }
+//     &-container {
+//       display: flex;
+//       gap: $basic-pixel-size * 4;
+//       flex-wrap: wrap;
+//       margin-top: $basic-pixel-size * 4;
+//     }
+//     &-actions {
+//       justify-content: space-between;
+//       border-top: math.div($basic-pixel-size, 2) solid #000;
+//       display: flex;
+//       flex-wrap: wrap;
+//       flex-direction: row;
+//       gap: $basic-pixel-size * 2;
+//       padding: $basic-pixel-size $basic-pixel-size * 2;
+//       ::ng-deep > * {
+//         flex-basis: calc((100% - $basic-pixel-size * 2) / 3);
+//         flex-grow: 4;
+//       }
+//     }
+//   }
+
+//   .brutal-checkbox {
+//     &:checked {
+//       background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28"><path d="m379.333-216.667-252.999-253 76.332-76.332 176.667 177.666L757-746l76.333 75.333-454 454Z"/></svg>')
+//         50% 50% no-repeat transparent;
+//     }
+//     &:hover {
+//       border-style: dashed;
+//     }
+//     @include brutal-border-old();
+//     display: flex;
+//     width: 32px !important;
+//     height: 32px;
+//   }
+
+//   .brutal-loader {
+//     width: 100%;
+//     .loader {
+//       width: fit-content;
+//       height: fit-content;
+//       display: inline-block;
+//       background: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000 100%),
+//         linear-gradient(45deg, #000 25%, white 25%, white 75%, #000 75%, #000 100%);
+//       background-size: 32px 32px;
+//       box-sizing: border-box;
+//       animation: raceBoard 0.6s linear infinite;
+//       background-position: 0 0, 16px 16px;
+//     }
+//   }
+
+//   @keyframes raceBoard {
+//     0% {
+//       background-position: 0 0, 16px 16px;
+//     }
+//     100% {
+//       background-position: 32px 0px, 48px 16px;
+//     }
+//   }
+
+//   .brutal-select {
+//     min-height: 5 * $basic-pixel-size;
+//     padding: 0px $basic-pixel-size * 2;
+//     justify-content: center;
+//     min-width: fit-content;
+//     @include brutal-border-old();
+//     & {
+//       appearance: none;
+//       background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-345 240-585l43-43 197 198 197-197 43 43-240 239Z"/></svg>')
+//         100% 50% no-repeat transparent;
+//     }
+//     option {
+//       all: unset;
+//       display: flex;
+//     }
+//   }
+
+//   .brutal-sidenav {
+//     height: 100%;
+//     display: block;
+
+//     aside {
+//       height: 100%;
+//       position: fixed;
+//       z-index: 1;
+//       left: 0;
+//       overflow-x: hidden;
+//       padding: $basic-pixel-size * 2;
+//       @include brutal-border-old();
+//       border-top: none;
+//     }
+
+//     main {
+//       padding: $basic-pixel-size * 6;
+//       padding-top: $basic-pixel-size * 2;
+//     }
+
+//     .animated {
+//       @include unsafe-doors();
+//     }
+//   }
+
+//   .brutal-sidenav-item {
+//     min-height: 80px;
+//     display: flex;
+//     justify-content: center;
+
+//     cursor: pointer;
+
+//     .sidenav-item-container {
+//       display: flex;
+//       width: 100%;
+//       align-items: center;
+//       @include brutal-border-old-bottom();
+//       .sidenav-icon-container {
+//         display: flex;
+//         min-width: 72px;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//       }
+//       .sidenav-title-container {
+//         display: flex;
+//         .sidenav-item-title {
+//           transition: opacity 500ms ease-out;
+//           white-space: nowrap;
+//         }
+//       }
+//     }
+
+//     &.active {
+//       .sidenav-item-container {
+//         border-style: dashed;
+//         border-top: none;
+//         border-left: none;
+//         border-right: none;
+//       }
+//     }
+//   }
+
+//   aside {
+//     height: 100%;
+//     position: fixed;
+//     z-index: 1;
+//     left: 0;
+//     overflow-x: hidden;
+//     padding: $basic-pixel-size * 2;
+//     @include brutal-border-old();
+//     border-top: none;
+//   }
+
+//   main {
+//     padding: $basic-pixel-size * 6;
+//     padding-top: $basic-pixel-size * 2;
+//   }
+
+//   .animated {
+//     @include unsafe-doors();
+//   }
+// }
+
+// .brutal-sidenav-item {
+//   min-height: 80px;
+//   display: flex;
+//   justify-content: center;
+
+//   cursor: pointer;
+
+//   .sidenav-item-container {
+//     display: flex;
+//     width: 100%;
+//     align-items: center;
+//     @include brutal-border-old-bottom();
+//     .sidenav-icon-container {
+//       display: flex;
+//       min-width: 72px;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//     }
+//     .sidenav-title-container {
+//       display: flex;
+//       .sidenav-item-title {
+//         transition: opacity 500ms ease-out;
+//         white-space: nowrap;
+//       }
+//     }
+//   }
+
+//   &.active {
+//     .sidenav-item-container {
+//       border-style: dashed;
+//       border-top: none;
+//       border-left: none;
+//       border-right: none;
+//     }
+//   }
+// }
+
+////// REFACTORED //////
+///
+///
+
+$basic-pixel-size: 8px;
+
+$color-primary: black;
+$color-secondary: white;
+$color-tertiary: #dc143c;
+$color-warning: yellow;
+$color-error: red;
+$color-disabled: col.adjust($color-primary, $lightness: 70%);
+
+.brutal-font {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+}
+
+.brutal-flex {
+  display: flex;
+  width: fit-content;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.brutal-padding {
+  padding: 0px $basic-pixel-size * 2;
+}
+
+$color-theming: (
+  'primary': (
+    $color-primary,
+    $color-secondary,
+    solid,
+    dashed
+  ),
+  'secondary': (
+    $color-secondary,
+    $color-primary,
+    dotted,
+    dashed
+  )
+);
+
+$size-theming: (
+  (
+    'xs': 2,
+    'sm': 3,
+    'md': 4,
+    'lg': 5
+  )
+);
+
+@mixin brutal-border($primary-color, $secondary-color, $border-style-default, $border-style-hover) {
+  border: math.div($basic-pixel-size, 2) $border-style-default $primary-color;
+  &:hover,
+  &:focus {
+    border-style: $border-style-hover;
+  }
+}
+
+@mixin brutal-color($primary-color, $secondary-color) {
+  background-color: $secondary-color;
+  color: $primary-color;
+}
+
+@mixin brutal-mode($parent, $with-border: true) {
+  @each $mode-name, $mode-value in $color-theming {
+    @at-root #{$parent}.mode-#{$mode-name} {
+      @include brutal-color(nth($mode-value, 1), nth($mode-value, 2));
+      @if $with-border {
+        @include brutal-border(nth($mode-value, 1), nth($mode-value, 2), nth($mode-value, 3), nth($mode-value, 4));
+      } @else {
+        border: none;
+      }
+    }
+  }
+}
+
+@mixin brutal-size($parent) {
+  @each $size-name, $size-value in $size-theming {
+    @at-root #{$parent}.size-#{$size-name} {
+      font-size: $basic-pixel-size * $size-value;
+      height: $basic-pixel-size * ($size-value + 1);
+    }
+  }
+}
+
+@mixin disabled($parent, $color: $color-primary) {
+  @at-root #{$parent}[disabled],
+    #{$parent}.disabled {
+    pointer-events: none;
+    border-color: $color-disabled;
+    color: $color-disabled;
+  }
+}
+
+@mixin brutal-mode-checkbox($parent) {
+  @each $size-name, $size-value in $size-theming {
+    @at-root #{$parent}.size-#{$size-name} {
+      // font-size: $basic-pixel-size * $size-value;
+      // height: $basic-pixel-size * ($size-value + 1);
+      @each $mode-name, $mode-value in $color-theming {
+        padding: $size-value * 4px;
+        &.mode-#{$mode-name} {
+          &:checked {
+            background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="' + $size-value * $basic-pixel-size + '" viewBox="0 -960 960 960" width="' + $size-value * $basic-pixel-size + '"><path d="m379.333-216.667-252.999-253 76.332-76.332 176.667 177.666L757-746l76.333 75.333-454 454Z" fill="' + nth(
+                  $mode-value,
+                  1
+                ) + '"/></svg>')
+              50% 50% no-repeat nth($mode-value, 2);
+          }
+          &.disabled:checked,
+          &[disabled]:checked {
+            background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="' + $size-value * $basic-pixel-size + '" viewBox="0 -960 960 960" width="' + $size-value * $basic-pixel-size + '"><path d="m379.333-216.667-252.999-253 76.332-76.332 176.667 177.666L757-746l76.333 75.333-454 454Z" fill="' + '%23' + str.slice(
+                  $color-disabled + '',
+                  2
+                ) + '"/></svg>')
+              50% 50% no-repeat nth($mode-value, 2);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin brutal-button() {
+  .brutal-button {
+    margin: 0;
+    @extend .brutal-font;
+    @extend .brutal-flex;
+    @extend .brutal-padding;
+    @include brutal-size(&);
+    @include brutal-mode(&);
+    @include disabled(&);
+  }
+}
+
+@mixin brutal-input() {
+  .brutal-input {
+    margin: 0;
+    @extend .brutal-font;
+    @extend .brutal-flex;
+    @extend .brutal-padding;
+    @include brutal-size(&);
+    @include brutal-mode(&);
+    @include disabled(&);
+    caret-color: red;
+    caret-shape: block;
+    outline: none;
+    &::placeholder {
+      color: $color-tertiary;
+      font-style: italic;
+    }
+  }
+}
+
+@mixin brutal-checkbox() {
+  .brutal-checkbox {
+    margin: 0;
+    outline: none;
+    appearance: unset;
+    @extend .brutal-font;
+    @extend .brutal-flex;
+    @include brutal-size(&);
+    @include brutal-mode(&);
+    @include disabled(&);
+    @include brutal-mode-checkbox(&);
+  }
+}
